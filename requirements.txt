@@ -1,0 +1,5 @@
+adafruit-circuitpython-ssd1306
+adafruit-circuitpython-framebuf
+adafruit-circuitpython-rfm9x
+adafruit-circuitpython-tinylora
+adafruit-circuitpython-bme280
