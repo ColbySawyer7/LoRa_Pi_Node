@@ -17,21 +17,6 @@ FEATHER_ID = 1
 
 i2c = busio.I2C(board.SCL, board.SDA)
 
-# Button A
-btnA = DigitalInOut(board.D5)
-btnA.direction = Direction.INPUT
-btnA.pull = Pull.UP
-
-# Button B
-btnB = DigitalInOut(board.D6)
-btnB.direction = Direction.INPUT
-btnB.pull = Pull.UP
-
-# Button C
-btnC = DigitalInOut(board.D12)
-btnC.direction = Direction.INPUT
-btnC.pull = Pull.UP
-
 # 128x32 OLED Display
 reset_pin = DigitalInOut(board.D4)
 display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, reset=reset_pin)
