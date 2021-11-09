@@ -58,6 +58,7 @@ while True:
     print('Sending packet .....')
     lora.send_data(sensor_data, len(sensor_data), lora.frame_counter)
     print('Temperature: ' + str(temp_val) + '\t' + 'Humidity: ' + str(humid_val))
+    print('Sent: \t' + datetime.now().strftime("%H:%M:%S.%f"))
     print("Packet Sent!\n\n")
     lora.frame_counter += 1
     display.text('Sent Data to TTN!' , 15, 15, 1)
