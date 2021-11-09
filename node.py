@@ -7,9 +7,19 @@ import random
 from digitalio import DigitalInOut
 import board
 import digitalio
+import adafruit_ssd1306
 from adafruit_tinylora.adafruit_tinylora import TTN, TinyLoRa
 
-FEATHER_ID = 2
+FEATHER_ID = 1
+
+# 128x32 OLED Display
+reset_pin = DigitalInOut(board.D4)
+display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, reset=reset_pin)
+# Clear the display.
+display.fill(0)
+display.show()
+width = display.width
+height = display.height
 
 i2c = busio.I2C(board.SCL, board.SDA)
 spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
@@ -28,6 +38,10 @@ lora = TinyLoRa(spi, cs, irq, rst, ttn_config, channel=6)
 sensor_data = bytearray(7)
 
 while True:
+    # draw a box to clear the image
+    display.fill(0)
+    display.text('RasPi LoRaWAN', 35, 0, 1)
+
     temp_val = 75 + random.randint(0,25)
     humid_val = 1000 - random.randint(0,250)
 
@@ -44,4 +58,8 @@ while True:
     print('Temperature: ' + str(temp_val) + '\t' + 'Humidity: ' + str(humid_val))
     print("Packet Sent!\n\n")
     lora.frame_counter += 1
-    time.sleep(1*60)
+    display.fill(0)
+    display.text('Sent Data to TTN!', 15, 15, 1)
+    print('Data sent!')
+    display.show()
+    time.sleep(0.5)
