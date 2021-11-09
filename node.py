@@ -61,7 +61,6 @@ while True:
     print("Packet Sent!\n\n")
     lora.frame_counter += 1
     display.text('Sent Data to TTN!' , 15, 15, 1)
-    display.text(datetime.now().strftime("%H:%M:%S.%f"), 15,15,1)
     print('Data sent!')
     display.show()
     time.sleep(30)
