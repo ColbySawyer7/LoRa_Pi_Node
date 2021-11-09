@@ -2,6 +2,7 @@
 # Based on the Adafruit documentation for creating a LoRA node (https://learn.adafruit.com/lora-and-lorawan-radio-for-raspberry-pi/usage)
 
 import time
+from datetime import datetime
 import busio
 import random
 from digitalio import DigitalInOut
@@ -59,7 +60,7 @@ while True:
     print('Temperature: ' + str(temp_val) + '\t' + 'Humidity: ' + str(humid_val))
     print("Packet Sent!\n\n")
     lora.frame_counter += 1
-    display.text('Sent Data to TTN!', 15, 15, 1)
+    display.text('Sent Data to TTN!' + datetime.now().strftime("%H:%M:%S.%f"), 15, 15, 1)
     print('Data sent!')
     display.show()
     time.sleep(30)
