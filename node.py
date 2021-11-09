@@ -60,7 +60,8 @@ while True:
     print('Temperature: ' + str(temp_val) + '\t' + 'Humidity: ' + str(humid_val))
     print("Packet Sent!\n\n")
     lora.frame_counter += 1
-    display.text('Sent Data to TTN!' + datetime.now().strftime("%H:%M:%S.%f"), 15, 15, 1)
+    display.text('Sent Data to TTN!' , 15, 15, 1)
+    display.text(datetime.now().strftime("%H:%M:%S.%f"), 15,15,1)
     print('Data sent!')
     display.show()
     time.sleep(30)
