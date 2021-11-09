@@ -32,18 +32,18 @@ irq = DigitalInOut(board.D22)
 rst = DigitalInOut(board.D25)
 
 # Lora
-#rfm9x = adafruit_rfm9x.RFM9x(spi,cs,rst, 915.0)
-#rfm9x.tx_power = 23
-#prev_packet = None
+rfm9x = adafruit_rfm9x.RFM9x(spi,cs,rst, 925.0)
+rfm9x.tx_power = 23
+prev_packet = None
 
 # LoRAWAN
-devaddr = bytearray([0x26, 0x0C, 0xB0, 0xF0])
-nwkey = bytearray([0x6C, 0x86, 0x6F, 0xC5, 0x2C, 0x37, 0x9F, 0xEA, 0xC1, 0xEB, 0xB8, 0x9A, 0x77, 0x9D, 0xD0, 0x99])
-app = bytearray([0x94, 0x15, 0x04, 0x91, 0x12, 0x00, 0x15, 0x27, 0x6F, 0x0D, 0x68, 0x10, 0x74, 0x64, 0x87, 0xA6])
+#devaddr = bytearray([0x26, 0x0C, 0xB0, 0xF0])
+#nwkey = bytearray([0x6C, 0x86, 0x6F, 0xC5, 0x2C, 0x37, 0x9F, 0xEA, 0xC1, 0xEB, 0xB8, 0x9A, 0x77, 0x9D, 0xD0, 0x99])
+#app = bytearray([0x94, 0x15, 0x04, 0x91, 0x12, 0x00, 0x15, 0x27, 0x6F, 0x0D, 0x68, 0x10, 0x74, 0x64, 0x87, 0xA6])
 
-ttn_config = TTN(devaddr, nwkey, app, country='US')
+#ttn_config = TTN(devaddr, nwkey, app, country='US')
 #lora = TinyLoRa(spi, cs, irq, rst, ttn_config, channel=6)
-lora = TinyLoRa(spi, cs, irq, rst, ttn_config)
+#lora = TinyLoRa(spi, cs, irq, rst, ttn_config)
 
 
 sensor_data = bytearray(7)
@@ -65,12 +65,12 @@ while True:
     sensor_data[4] = humid_val & 0xff
 
     print('Sending packet .....')
-    #rfm9x.send(bytes(str(temp_val),"utf-8"))
-    lora.send_data(sensor_data, len(sensor_data), lora.frame_counter)
+    rfm9x.send(bytes(str(temp_val),"utf-8"))
+    #lora.send_data(sensor_data, len(sensor_data), lora.frame_counter)
     print('Temperature: ' + str(temp_val) + '\t' + 'Humidity: ' + str(humid_val))
     print('Sent: \t' + datetime.now().strftime("%H:%M:%S.%f"))
     print("Packet Sent!\n\n")
-    lora.frame_counter += 1
+    #lora.frame_counter += 1
     display.text('Sent Data to TTN!' , 15, 15, 1)
     print('Data sent!')
     display.show()
