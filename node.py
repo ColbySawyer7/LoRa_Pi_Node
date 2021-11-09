@@ -12,6 +12,8 @@ from adafruit_tinylora.adafruit_tinylora import TTN, TinyLoRa
 
 FEATHER_ID = 1
 
+i2c = busio.I2C(board.SCL, board.SDA)
+
 # 128x32 OLED Display
 reset_pin = DigitalInOut(board.D4)
 display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, reset=reset_pin)
@@ -21,7 +23,6 @@ display.show()
 width = display.width
 height = display.height
 
-i2c = busio.I2C(board.SCL, board.SDA)
 spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
 cs = DigitalInOut(board.CE1)
 irq = DigitalInOut(board.D22)
