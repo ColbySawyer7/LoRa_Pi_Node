@@ -64,12 +64,12 @@ while True:
     sensor_data[4] = humid_val & 0xff
 
     print('Sending packet .....')
-    rfm9x.send(bytes(str(temp_val),"utf-8"))
-    #lora.send_data(sensor_data, len(sensor_data), lora.frame_counter)
+    #rfm9x.send(bytes(str(temp_val),"utf-8"))
+    lora.send_data(sensor_data, len(sensor_data), lora.frame_counter)
     print('Temperature: ' + str(temp_val) + '\t' + 'Humidity: ' + str(humid_val))
     print('Sent: \t' + datetime.now().strftime("%H:%M:%S.%f"))
     print("Packet Sent!\n\n")
-    #lora.frame_counter += 1
+    lora.frame_counter += 1
     display.text('Sent Data to TTN!' , 15, 15, 1)
     print('Data sent!')
     display.show()
