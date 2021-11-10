@@ -42,7 +42,7 @@ nwkey = bytearray([0x2C, 0xDD, 0xFF, 0xCB, 0x6C, 0x30, 0x05, 0xC2, 0x57, 0xBB, 0
 app = bytearray([0x7B, 0xFF, 0x4D, 0xB7, 0x7E, 0x7C, 0x8A, 0xAA, 0xD0, 0xFC, 0x96, 0x73, 0xCF, 0xD5, 0xA7, 0xE4])
 ttn_config = TTN(devaddr, nwkey, app, country='US')
 #lora = TinyLoRa(spi, cs, irq, rst, ttn_config, channel=6)
-lora = TinyLoRa(spi=spi, cs=cs, irq=irq, rst=st, ttn_config=ttn_config, channel=3)
+lora = TinyLoRa(spi=spi, cs=cs, irq=irq, rst=rst, ttn_config=ttn_config, channel=3)
 
 
 sensor_data = bytearray(7)
