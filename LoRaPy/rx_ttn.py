@@ -52,7 +52,7 @@ lora = LoRaWANrcv(False)
 # Setup
 lora.set_mode(MODE.SLEEP)
 lora.set_dio_mapping([0] * 6)
-lora.set_freq(868.1)
+lora.set_freq(902.7)
 lora.set_pa_config(pa_select=1)
 lora.set_spreading_factor(7)
 lora.set_sync_word(0x34)
